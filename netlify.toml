@@ -1,0 +1,3 @@
+[build]
+  publish = "dist"  # Cambia "dist" al directorio donde se generan tus archivos estáticos.
+  functions = "functions"  # Este es el directorio donde están tus funciones sin servidor.
