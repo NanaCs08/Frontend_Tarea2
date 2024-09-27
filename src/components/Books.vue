@@ -38,14 +38,18 @@ export default {
       books: []
     };
   },
-  mounted() {
-    axios.get('http://localhost:3000/api/books')
-      .then(response => {
+  created() {
+    this.fetchBooks();
+  },
+  methods: {
+    async fetchBooks() {
+      try {
+        const response = await axios.get('https://master--backendtarea2dcs.netlify.app/.netlify/functions/getBooks');
         this.books = response.data;
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error fetching books:', error);
-      });
+      }
+    }
   }
 }
 </script>

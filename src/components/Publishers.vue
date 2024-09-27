@@ -42,14 +42,18 @@ export default {
       publishers: []
     };
   },
-  mounted() {
-    axios.get('http://localhost:3000/api/publishers')
-      .then(response => {
+  created() {
+    this.fetchPublishers();
+  },
+  methods: {
+    async fetchPublishers() {
+      try {
+        const response = await axios.get('https://master--backendtarea2dcs.netlify.app/.netlify/functions/getPublishers');
         this.publishers = response.data;
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error fetching publishers:', error);
-      });
+      }
+    }
   }
 }
 </script>

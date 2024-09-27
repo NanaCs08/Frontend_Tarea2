@@ -42,15 +42,18 @@ export default {
       authors: []
     };
   },
-  mounted() {
-    axios.get('http://localhost:3000/api/authors')
-      .then(response => {
-        console.log(response.data);
+  created() {
+    this.fetchAuthors();
+  },
+  methods: {
+    async fetchAuthors() {
+      try {
+        const response = await axios.get('https://master--backendtarea2dcs.netlify.app/.netlify/functions/getAuthors');
         this.authors = response.data;
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error fetching authors:', error);
-      });
+      }
+    }
   }
 }
 </script>
